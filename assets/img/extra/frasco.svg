@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Frasco de vidrio">
+  <ellipse cx="50" cy="133" rx="28" ry="5" fill="#000" opacity=".08"/>
+  <rect x="28" y="10" width="44" height="18" rx="5" fill="#f9a825" stroke="#4a6572" stroke-width="4"/>
+  <rect x="32" y="28" width="36" height="12" fill="#cdebf0" stroke="#4a6572" stroke-width="4"/>
+  <path d="M24 50q0-10 10-10h32q10 0 10 10v68q0 12-12 12H36q-12 0-12-12z" fill="#cdebf0" stroke="#4a6572" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="33" y="52" width="7" height="62" rx="3.5" fill="#fff" opacity=".8"/>
+  <path d="M26 96h48v22q0 10-10 10H36q-10 0-10-10z" fill="#9bd3dc" opacity=".55"/>
+</svg>

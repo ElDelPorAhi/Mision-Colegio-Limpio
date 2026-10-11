@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" role="img" aria-label="Hojas secas">
+  <defs><path id="h" d="M0-32C24-20 24 18 0 32-24 18-24-20 0-32z"/></defs>
+  <ellipse cx="70" cy="108" rx="48" ry="6" fill="#000" opacity=".07"/>
+  <g stroke="#7a4a1a" stroke-width="3.5" stroke-linejoin="round">
+    <use href="#h" transform="translate(40 66) rotate(-35)" fill="#ef8a1d"/>
+    <use href="#h" transform="translate(98 64) rotate(40)" fill="#c0651a"/>
+    <use href="#h" transform="translate(70 52) rotate(6)" fill="#d9a21b"/>
+  </g>
+  <g stroke="#7a4a1a" stroke-width="2.5" stroke-linecap="round" fill="none">
+    <path d="M40 66l-12 -14M40 66l0-0" transform="translate(0 0)"/>
+    <path d="M98 64l14-10"/>
+    <path d="M70 52v-28M70 52l-6-8M70 52l6-8"/>
+    <path d="M50 76l-16 -26M92 70l14-18"/>
+  </g>
+</svg>

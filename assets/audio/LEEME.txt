@@ -1,0 +1,5 @@
+Pon aqui tu cancion con el nombre exacto:  musica.mp3
+
+Si tu archivo se llama distinto, cambia "rutaMusica" al inicio de data.js.
+El juego funciona igual sin este archivo, solo que no habra musica.
+Revisa la licencia de la pista antes de usarla.

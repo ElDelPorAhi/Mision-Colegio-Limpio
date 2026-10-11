@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Misión Colegio Limpio: videojuego educativo para aprender a separar los residuos y cuidar el colegio.">
+  <title>Misión Colegio Limpio</title>
+  <link rel="icon" href="assets/img/insignia_clasificacion.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="saltar" href="#app">Saltar al juego</a>
+
+  <!-- Barra superior: se muestra solo cuando el jugador ya empezó -->
+  <header id="hud" class="hud" hidden>
+    <button type="button" id="btnMenu" class="btn-icono" aria-label="Volver al menú de misiones">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+      <span>Menú</span>
+    </button>
+    <div class="hud-centro">
+      <div class="hud-titulo" id="hudTitulo">Misión Colegio Limpio</div>
+      <div class="barra" id="barraTotal" role="progressbar" aria-label="Progreso total del juego" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+        <span id="barraTotalRelleno"></span>
+      </div>
+      <div class="hud-sub" id="hudProgreso">0 de 8 retos completados</div>
+    </div>
+    <div class="chip-puntos" title="Puntos acumulados">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.8 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8 6.6 19.7l1-6.1L3.2 9.3l6.1-.9z"/></svg>
+      <span id="hudPuntos">0</span><span class="chip-pts"> pts</span>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <!-- Controles de audio (siempre visibles) -->
+  <aside id="audioDock" class="audio-dock" aria-label="Controles de audio">
+    <button type="button" class="btn-audio btn-abrir" id="btnAudioAbrir" aria-expanded="false" aria-controls="audioDock" aria-label="Mostrar los controles de audio" title="Audio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v11.3A3.5 3.5 0 1 0 11 17.5V7.6l8-1.6v6.3A3.5 3.5 0 1 0 21 15.5V3z"/></svg>
+    </button>
+    <button type="button" class="btn-audio" id="btnMusica" aria-pressed="false" aria-label="Reproducir música" title="Reproducir o pausar la música">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-play"><path d="M8 5.5v13l11-6.5z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-pausa"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>
+    </button>
+    <button type="button" class="btn-audio" id="btnSilencio" aria-pressed="false" aria-label="Silenciar la música" title="Silenciar o activar la música">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-vol"><path d="M4 9.5v5h3.6L13 19V5L7.6 9.5zM16 8.5a5 5 0 0 1 0 7l-1.4-1.4a3 3 0 0 0 0-4.2zM18.8 5.7a9 9 0 0 1 0 12.6l-1.4-1.4a7 7 0 0 0 0-9.8z"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-mute"><path d="M4 9.5v5h3.6L13 19V5L7.6 9.5zM16.2 9.4l1.8 1.8 1.8-1.8 1.4 1.4-1.8 1.8 1.8 1.8-1.4 1.4-1.8-1.8-1.8 1.8-1.4-1.4 1.8-1.8-1.8-1.8z"/></svg>
+    </button>
+    <label class="vol">
+      <span class="sr-only">Volumen de la música</span>
+      <input type="range" id="volumen" min="0" max="100" value="20" step="5">
+    </label>
+    <button type="button" class="btn-audio btn-sfx" id="btnEfectos" aria-pressed="true" aria-label="Efectos de sonido activados" title="Activar o desactivar los efectos de sonido">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.8 4.8 2.2 6.2 7 7-4.8.8-6.2 2.2-7 7-.8-4.8-2.2-6.2-7-7 4.8-.8 6.2-2.2 7-7zM19 15c.4 2.4 1.1 3.1 3.5 3.5-2.4.4-3.1 1.1-3.5 3.5-.4-2.4-1.1-3.1-3.5-3.5 2.4-.4 3.1-1.1 3.5-3.5z"/></svg>
+      <span class="tachon" aria-hidden="true"></span>
+    </button>
+    <span class="audio-aviso" id="audioAviso" hidden></span>
+  </aside>
+
+  <!-- Insignias y avisos dentro de la interfaz (sin ventanas del navegador) -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" tabindex="-1">
+      <div id="modalContenido"></div>
+    </div>
+  </div>
+
+  <div id="anuncio" class="sr-only" role="status" aria-live="polite"></div>
+
+  <noscript><p style="padding:2rem;font:1.1rem sans-serif">Este juego necesita JavaScript activado para funcionar.</p></noscript>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
